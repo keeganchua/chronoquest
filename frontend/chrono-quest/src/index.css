@@ -11,3 +11,48 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Style for the h1 title (ChronoQuest) */
+.App-title {
+    font-family: 'Kanit', sans-serif; /* Set your desired font family */
+    font-size: 90px; /* Set your desired font size */
+    font-weight: bold; /* Set your desired font weight */
+    color: #333; /* Set your desired text color */
+    /* Add other title styles as needed */
+    margin-top: 0; /* Reset the default margin for h1 */
+}
+
+/* Style for the p subtitle (An adventurous journey through the world of watches and brands) */
+.App-subtitle {
+    font-family: 'Lato', sans-serif; /* Set your desired font family */
+    font-size: 18px; /* Set your desired font size */
+    font-style: italic; /* Set your desired font style */
+    color: #666; /* Set your desired text color */
+    /* Add other subtitle styles as needed */
+    margin-top: -80px; /* Adjust the negative margin to move the subtitle upwards */
+}
+
+/* Style for the search bar */
+.search-bar {
+    margin-top: 20px;
+    display: flex; /* Align input and button horizontally */
+}
+
+    .search-bar input {
+        width: 300px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .search-bar button {
+        background-color: transparent; /* Set button background to transparent */
+        border: none; /* Remove button border */
+        cursor: pointer;
+    }
+
+        .search-bar button img {
+            width: 30px; /* Set the width of the watch logo */
+            height: auto; /* Maintain aspect ratio */
+        }
