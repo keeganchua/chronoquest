@@ -35,6 +35,8 @@ jobs:
       run: |
         mkdir -p ${{ runner.workspace }}/build
         mv frontend/chrono-quest/build/* ${{ runner.workspace }}/build/
+        git config --global user.email "hengquan0204@gmail.com"
+        git config --global user.name "keeganchua"
         git add -A
         git commit -m "Add build artifacts"
         git push
