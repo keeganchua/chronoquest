@@ -30,7 +30,11 @@ jobs:
       run: npm run build
       working-directory: frontend/chrono-quest
       
-    - name: Preserve build artifacts
+    - name: Move build artifacts to main branch
       if: success()
       run: |
-        mv ${{ runner.workspace }}/build frontend/chrono-quest/build
+        mkdir -p ${{ runner.workspace }}/build
+        mv frontend/chrono-quest/build/* ${{ runner.workspace }}/build/
+        git add -A
+        git commit -m "Add build artifacts"
+        git push
