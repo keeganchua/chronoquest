@@ -31,5 +31,6 @@ jobs:
       working-directory: frontend/chrono-quest
       
     - name: Preserve build artifacts
-    if: success()
-    run: mv frontend/chrono-quest/build ${{ runner.workspace }}/build
+      if: success()
+      run: |
+        mv frontend/chrono-quest/build ${{ runner.workspace }}/build
