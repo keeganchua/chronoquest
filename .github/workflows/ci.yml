@@ -33,4 +33,4 @@ jobs:
     - name: Preserve build artifacts
       if: success()
       run: |
-        mv frontend/chrono-quest/build frontend/chrono-quest/build
+        mv ${{ runner.workspace }}/build frontend/chrono-quest/build
