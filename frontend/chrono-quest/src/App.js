@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import './App.css'; // Import your CSS file
-
+import config from './config'; // Import your configuration file
 function App() {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
     const handleSearch = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/search?query=${searchQuery}`);
+            const response = await fetch(`${config.apiUrl}/search?query=${searchQuery}`);
             console.log(response);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
