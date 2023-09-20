@@ -51,8 +51,8 @@ jobs:
     - name: Move build artifacts to main branch
       if: success()
       run: |
-          mkdir -p frontend/chrono-quest/build
-          mv build/* frontend/chrono-quest/build/
+          mkdir -p ${{ runner.workspace }}/build
+          mv frontend/chrono-quest/build/* ${{ runner.workspace }}/build/
           git config --global user.name "keeganchua"
           git config --global user.email "hengquan0204@gmail.com"
           git add frontend/chrono-quest/build
