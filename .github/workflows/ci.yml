@@ -29,14 +29,32 @@ jobs:
     - name: Build frontend
       run: npm run build
       working-directory: frontend/chrono-quest
-      
+
+    # Set up the GitHub token
+    - name: Set up GitHub Token
+      env:
+        ACTIONS_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
+      run: echo "machine github.com login $ACTIONS_TOKEN" > ~/.netrc
+
+    # Check if the pusher is the GitHub Actions bot
+    - name: Check if pusher is Actions bot
+      id: is_actions_bot
+      run: |
+        if [ "$(git log -1 --format='%an')" == "GitHub Actions" ]; then
+          echo "Push was made by Actions bot."
+          echo "::set-output name=actions_bot::true"
+        else
+          echo "Push was not made by Actions bot."
+          echo "::set-output name=actions_bot::false"
+        fi
+          
     - name: Move build artifacts to main branch
       if: success()
       run: |
-        mkdir -p ${{ runner.workspace }}/build
-        mv frontend/chrono-quest/build/* ${{ runner.workspace }}/build/
-        git config --global user.email "hengquan0204@gmail.com"
-        git config --global user.name "keeganchua"
-        git add -A
-        git commit -m "Add build artifacts"
-        git push
+          mkdir -p frontend/chrono-quest/build
+          mv build/* frontend/chrono-quest/build/
+          git config --global user.name "keeganchua"
+          git config --global user.email "hengquan0204@gmail.com"
+          git add frontend/chrono-quest/build
+          git commit -m "Move build artifacts to frontend/chrono-quest/build"
+          git push
