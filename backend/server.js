@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors'); // Import the cors middleware
 const app = express();
-const port = 3000; // Change this to the desired port number
+const port = process.env.PORT || 3000; // Use the provided port or default to 3000
 
 // Middleware to parse JSON requests
 app.use(express.json());

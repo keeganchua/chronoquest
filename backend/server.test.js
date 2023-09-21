@@ -1,7 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('./server'); // Assuming your server file is named 'server.js'
-const serverPort = app.address().port; // Get the server's port
 
 const expect = chai.expect;
 chai.use(chaiHttp);
@@ -9,8 +8,8 @@ chai.use(chaiHttp);
 describe('Server API Tests', () => {
     it('should respond with a 200 status code for /search', (done) => {
         chai
-            .request(`http://localhost:${serverPort}`)
-            .get('/search?query=Rolex')
+            .request(app)
+            .get('/search?query=Tag')
             .end((err, res) => {
                 expect(res).to.have.status(200);
                 done();
