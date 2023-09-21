@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        ref: dev_frontend
 
     - name: Set up Node.js
       uses: actions/setup-node@v2
@@ -26,9 +28,25 @@ jobs:
       run: npm run build
       working-directory: frontend/chrono-quest
 
-    - name: Start mock backend
+    - name: Pull backend code from dev_backend
+      run: |
+        git config user.email "hengquan0204@gmail.com"
+        git config user.name "keeganchua"
+        git remote add backend https://${{ secrets.GITHUB_TOKEN }}@github.com/keeganchua/chronoquest.git
+        git fetch backend dev_backend
+        git checkout dev_frontend
+        git merge backend/dev_backend --no-commit --no-ff
+        # Resolve any merge conflicts if necessary
+        # Continue with the merge
+        git commit -m "Merge changes from dev_backend for integration testing"
+      working-directory: backend  
+
+    - name: Start backend server
       run: npm start
       working-directory: backend
+
+    - name: Wait for backend to start
+      run: sleep 10 # Adjust the duration based on how long it takes for your backend to start
 
     - name: Run integration tests
       run: npm test:integration
