@@ -38,7 +38,7 @@ jobs:
         path: frontend/chrono-quest/build
 
     - name: Debug Secret
-      run: echo ${{ secrets.ACTIONS_TOKEN }}
+      run: echo ${{ secrets.GH_PAT }}
   
     - name: Push build artifacts to main branch
       if: success()
@@ -49,4 +49,4 @@ jobs:
         git pull origin main
         git add frontend/chrono-quest/build
         git commit -m "Push build artifacts to main branch"
-        git push https://${{ secrets.ACTIONS_TOKEN }}@github.com/keeganchua/chronoquest.git main
+        git push https://${{ secrets.GH_PAT }}@github.com/keeganchua/chronoquest.git main
