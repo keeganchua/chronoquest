@@ -44,7 +44,6 @@ jobs:
         git config user.name "keeganchua"
         git checkout main
         git pull origin main
-        mv ${{ runner.workspace }}/build/* ./frontend/chrono-quest/build
-        git add ./frontend/chrono-quest/build
+        git add frontend/chrono-quest/build
         git commit -m "Push build artifacts to main branch"
         git push origin main
