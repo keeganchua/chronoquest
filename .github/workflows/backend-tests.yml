@@ -20,6 +20,8 @@ jobs:
 
     - name: Install dependencies
       run: npm install  # You may use yarn if preferred
+      working-directory: backend
 
     - name: Run tests
       run: npx mocha server.test.js  # Adjust the test command based on your project's setup
+      working-directory: backend
