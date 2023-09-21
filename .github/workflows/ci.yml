@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        ref: main
 
     - name: Set up Node.js
       uses: actions/setup-node@v2
@@ -36,17 +38,13 @@ jobs:
       with:
         name: build-artifacts
         path: frontend/chrono-quest/build
-
-    - name: Debug Secret
-      run: echo ${{ secrets.GH_PAT }}
   
     - name: Push build artifacts to main branch
       if: success()
       run: |
         git config user.email "hengquan0204@gmail.com"
         git config user.name "keeganchua"
-        git checkout main
         git pull origin main
         git add frontend/chrono-quest/build
         git commit -m "Push build artifacts to main branch"
-        git push https://${{ secrets.GH_PAT }}@github.com/keeganchua/chronoquest.git main
+        git push https://${{ secrets.GITHUB_TOKEN }}@github.com/keeganchua/chronoquest.git main
