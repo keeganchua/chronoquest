@@ -37,13 +37,14 @@ jobs:
         name: build-artifacts
         path: frontend/chrono-quest/build
 
-    - name: Deploy to Main Branch
+    - name: Push build artifacts to main branch
       if: success()
       run: |
         git config user.email "hengquan0204@gmail.com"
         git config user.name "keeganchua"
         git checkout main
         git pull origin main
-        git add ${{ runner.workspace }}/frontend/chrono-quest/build
-        git commit -m "Deploy build artifacts"
+        mv ${{ runner.workspace }}/frontend/chrono-quest/build/* ./
+        git add .
+        git commit -m "Push build artifacts to main branch"
         git push origin main
