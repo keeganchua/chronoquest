@@ -6,7 +6,7 @@ on:
       - dev_frontend
 
 jobs:
-  build:
+  frontend-test:
     runs-on: ubuntu-latest
 
     steps:
