@@ -30,7 +30,9 @@ jobs:
 
     - name: Pull backend code from dev_backend
       run: |
-        git remote add backend https://github.com/keeganchua/chronoquest.git
+        git config user.email "hengquan0204@gmail.com"
+        git config user.name "keeganchua"
+        git remote add backend https://${{ secrets.GITHUB_TOKEN }}@github.com/keeganchua/chronoquest.git
         git fetch backend dev_backend
         git checkout dev_frontend
         git merge backend/dev_backend --no-commit --no-ff
