@@ -32,7 +32,7 @@ function App() {
                 <div className="search-bar">
                     <input
                         type="text"
-                        placeholder="Enter a watch brand to begin quest..."
+                        placeholder="Enter a watch brand to begin quest...."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
