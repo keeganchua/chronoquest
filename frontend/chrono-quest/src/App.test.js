@@ -6,5 +6,5 @@ test('renders App component', () => {
     render(<App />);
     const appTitle = screen.getByText('ChronoQuest');
     expect(appTitle).toBeInTheDocument();
-});
+}); 
 
