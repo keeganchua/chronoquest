@@ -8,4 +8,3 @@ test('renders App component', () => {
     expect(appTitle).toBeInTheDocument();
 });
 
-

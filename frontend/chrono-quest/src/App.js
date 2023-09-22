@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css'; // Import your CSS file
 import config from './config'; // Import your configuration file
+
 function App() {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);

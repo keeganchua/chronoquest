@@ -1,12 +1,12 @@
 name: Frontend Tests
 
 on:
-  pull_request:
+  push:
     branches:
       - dev_frontend
 
 jobs:
-  build:
+  frontend-test:
     runs-on: ubuntu-latest
 
     steps:
