@@ -9,7 +9,7 @@ describe('Server API Tests', () => {
     it('should respond with a 200 status code for /search', (done) => {
         chai
             .request(app)
-            .get('/search?query=Tag')
+            .get('/search?query=Omega')
             .end((err, res) => {
                 expect(res).to.have.status(200);
                 done();
