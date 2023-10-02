@@ -20,7 +20,7 @@ jobs:
           
       - name: Install Dependencies and Start Frontend
         run: |
-          cd frontend/chronoquest
+          cd frontend/chrono-quest
           npm install
           npm start &
 
