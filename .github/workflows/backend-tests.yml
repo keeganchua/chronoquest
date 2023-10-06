@@ -23,5 +23,5 @@ jobs:
       working-directory: backend
 
     - name: Run tests
-      run: npx mocha server.test.js  # Adjust the test command based on your setup
+      run: npm test  # Adjust the test command based on your setup
       working-directory: backend
