@@ -29,3 +29,14 @@ jobs:
           cd backend
           npm install
           nohup npm start &    
+          
+      - name: Wait for Applications to Start
+        run: |
+          # Wait for a few seconds to allow the applications to start.
+          sleep 10
+
+      - name: Run Integration Tests
+        run: |
+          # Assuming you have integration tests configured, run them here.
+          # You may need to set up environment variables, test databases, etc.
+          npm test:integration
