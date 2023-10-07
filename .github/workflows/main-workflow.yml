@@ -37,6 +37,5 @@ jobs:
 
       - name: Run Integration Tests
         run: |
-          # Assuming you have integration tests configured, run them here.
-          # You may need to set up environment variables, test databases, etc.
+          cd frontend/chrono-quest
           npm test:integration
