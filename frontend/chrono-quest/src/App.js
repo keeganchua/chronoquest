@@ -10,9 +10,11 @@ function App() {
         try {
             const response = await fetch(`${config.apiUrl}/search?query=${searchQuery}`);
             console.log(response);
+
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error(`Network response was not ok (status ${response.status})`);
             }
+
             const data = await response.json();
             console.log('Data received from backend:', data);
             setSearchResults(data); // Assuming the backend returns search results in JSON format
