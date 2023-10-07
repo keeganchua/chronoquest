@@ -35,7 +35,9 @@ jobs:
           # Wait for a few seconds to allow the applications to start.
           sleep 10
 
-      - name: Run Integration Tests
+      - name: Run Cypress Tests
         run: |
           cd frontend/chrono-quest
-          npm test:integration
+          npm run cy:run
+        env:
+          CYPRESS_baseUrl: 'http://localhost:3001'
