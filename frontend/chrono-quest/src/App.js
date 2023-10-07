@@ -37,7 +37,7 @@ function App() {
                         placeholder="Enter a watch brand to begin quest...."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        data-cy="search-input" // Add this attribute
+                        data-cy="search-input" // Add this attribute 
                     />
                     <button onClick={handleSearch} data-cy="search-button">
                         <img src="/watch_logo1.png" alt="Watch Logo" />
