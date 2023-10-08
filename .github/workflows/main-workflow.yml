@@ -52,11 +52,9 @@ jobs:
           publish_dir: ./frontend/chrono-quest/build
 
       - name: Deploy Backend to Heroku
-        run: |
-          # Log in to Heroku using the API key stored in the secret
-          echo $HEROKU_API_KEY | heroku login -i
-          heroku whoami
-          # Deploy the backend to Heroku
-          git subtree push --prefix backend heroku main
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: CHRONOQUEST-BACKEND # Replace with your Heroku app name
+          heroku_email: hengquan0204@gmail.com # Replace with your Heroku account email
+          deploy-path: backend # Specify the directory to deploy
