@@ -46,11 +46,7 @@ jobs:
           npm run build
           
       - name: Deploy to GitHub Pages
-        run: |
-          git config --global user.email hengquan0204@gmail.com
-          git config --global user.name keeganchua
-          cd frontend/chrono-quest
-          npm install -g gh-pages
-          npm run deploy
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_PAGES_TOKEN }}
+          publish_dir: ./frontend/chrono-quest/build
