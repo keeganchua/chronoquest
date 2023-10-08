@@ -2,10 +2,12 @@
   "name": "chrono-quest",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://keeganchua.github.io/chronoquest",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "gh-pages": "^6.0.0",
     "miragejs": "^0.1.47",
     "package-name": "^0.1.0",
     "react": "^18.2.0",
@@ -18,7 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cy:run": "cypress run" 
+    "cy:run": "cypress run",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
