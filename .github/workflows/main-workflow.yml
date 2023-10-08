@@ -50,3 +50,12 @@ jobs:
         with:
           github_token: ${{ secrets.GH_PAGES_TOKEN }}
           publish_dir: ./frontend/chrono-quest/build
+
+      - name: Deploy Backend to Heroku
+        run: |
+          # Log in to Heroku using the API key stored in the secret
+          echo $HEROKU_API_KEY | heroku login -i
+          # Deploy the backend to Heroku
+          git subtree push --prefix backend heroku main
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
