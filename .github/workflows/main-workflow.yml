@@ -1,12 +1,10 @@
-name: Main Branch Workflow
-
 on:
   push:
     branches:
       - main
 
 jobs:
-  main-branch-workflow:
+  localhost-integration-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,26 +15,19 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14
-
-      - name: Install Dependencies
+          
+      - name: Install Dependencies and Start Frontend
         run: |
           cd frontend/chrono-quest
           npm install
-        working-directory: frontend/chrono-quest
-
-      - name: Build React Application
-        run: |
-          cd frontend/chrono-quest
-          npm run build
-        working-directory: frontend/chrono-quest
+          npm start &
 
       - name: Install Dependencies and Start Backend
         run: |
           cd backend
           npm install
-          nohup npm start &
-        working-directory: backend
-
+          nohup npm start &    
+          
       - name: Wait for Applications to Start
         run: |
           # Wait for a few seconds to allow the applications to start.
@@ -48,11 +39,3 @@ jobs:
           npm run cy:run
         env:
           CYPRESS_baseUrl: 'http://localhost:3001'
-
-      - name: Deploy to GitHub Pages
-        run: |
-          cd frontend/chrono-quest
-          npm install -g gh-pages
-          npm run deploy
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
