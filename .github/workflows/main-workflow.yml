@@ -39,3 +39,16 @@ jobs:
           npm run cy:run
         env:
           CYPRESS_baseUrl: 'http://localhost:3001'
+
+      - name: Build Frontend React Application
+        run: |
+          cd frontend/chrono-quest
+          npm run build
+          
+      - name: Deploy to GitHub Pages
+        run: |
+          cd frontend/chrono-quest
+          npm install -g gh-pages
+          npm run deploy
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
