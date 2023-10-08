@@ -55,6 +55,7 @@ jobs:
         run: |
           # Log in to Heroku using the API key stored in the secret
           echo $HEROKU_API_KEY | heroku login -i
+          heroku whoami
           # Deploy the backend to Heroku
           git subtree push --prefix backend heroku main
         env:
