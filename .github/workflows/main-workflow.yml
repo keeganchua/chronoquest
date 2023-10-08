@@ -4,7 +4,7 @@ on:
       - main
 
 jobs:
-  localhost-integration-test:
+  main-branch-workflow:
     runs-on: ubuntu-latest
 
     steps:
