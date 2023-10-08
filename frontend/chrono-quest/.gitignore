@@ -1,2 +1,2 @@
 # Ignore Cypress screenshot files
-cypress/screenshots/search.spec.js/
+cypress/screenshots/
