@@ -40,7 +40,7 @@ function App() {
                         data-cy="search-input" // Add this attribute 
                     />
                     <button onClick={handleSearch} data-cy="search-button">
-                        <img src="/watch_logo1.png" alt="Watch Logo" />
+                        <img src={process.env.PUBLIC_URL + '/watch_logo1.png'} alt="Watch Logo" />
                     </button>
                 </div>
                 <div className="search-results">
