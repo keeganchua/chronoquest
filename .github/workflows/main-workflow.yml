@@ -51,15 +51,15 @@ jobs:
           github_token: ${{ secrets.GH_PAGES_TOKEN }}
           publish_dir: ./frontend/chrono-quest/build
 
-      - name: Deploy Backend to Heroku
+      - name: Deploy Backend to Vercel
         run: |
-          # Install Heroku CLI
-          curl https://cli-assets.heroku.com/install.sh | sh
-          # Verify Heroku CLI Installation
-          heroku --version
-          # Log in to Heroku interactively
-          /usr/local/bin/heroku login
-          
-          # Deploy your backend code to Heroku
+          # Install the Vercel CLI
+          npm install -g vercel
+          # Log in to Vercel using your Vercel account credentials
+          vercel login
+          # Navigate to your backend directory (modify as needed)
           cd backend
-          git push heroku main
+          # Deploy the backend to Vercel
+          vercel --prod
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
