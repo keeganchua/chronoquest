@@ -58,7 +58,7 @@ jobs:
           # Verify Heroku CLI Installation
           heroku --version
           # Log in to Heroku interactively
-          heroku login
+          /usr/local/bin/heroku login
           
           # Deploy your backend code to Heroku
           cd backend
