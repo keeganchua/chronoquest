@@ -45,8 +45,19 @@ jobs:
           cd frontend/chrono-quest
           npm run build
           
-      - name: Deploy to GitHub Pages
+      - name: Deploy Frontend to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_PAGES_TOKEN }}
           publish_dir: ./frontend/chrono-quest/build
+
+      - name: Deploy Backend to Heroku
+        run: |
+          # Log in to Heroku using your API key or token
+          echo $HEROKU_API_KEY | heroku login -i
+          
+          # Deploy your backend code to Heroku
+          cd backend
+          git push heroku main
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
