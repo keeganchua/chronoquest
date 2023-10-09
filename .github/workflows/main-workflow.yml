@@ -53,8 +53,8 @@ jobs:
 
       - name: Deploy Backend to Heroku
         run: |
-          # Log in to Heroku using your API key or token
-          echo $HEROKU_API_KEY | heroku login -i
+          # Log in to Heroku interactively
+          heroku login
           
           # Deploy your backend code to Heroku
           cd backend
