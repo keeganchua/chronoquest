@@ -53,6 +53,10 @@ jobs:
 
       - name: Deploy Backend to Heroku
         run: |
+          # Install Heroku CLI
+          curl https://cli-assets.heroku.com/install.sh | sh
+          # Verify Heroku CLI Installation
+          heroku --version
           # Log in to Heroku interactively
           heroku login
           
