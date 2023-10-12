@@ -62,4 +62,5 @@ jobs:
           gcloud config set compute/region asia-southeast1
 
           # Deploy the backend to GCP (you can use gcloud CLI commands here)
+          cd backend
           gcloud app deploy backend/build/app.yaml
