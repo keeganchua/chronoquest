@@ -15,7 +15,16 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14
-          
+
+      - name: Install Google Cloud SDK
+        run: |
+          # Install the Google Cloud SDK
+          curl -fsSL https://sdk.cloud.google.com | bash
+          exec -l $SHELL
+          gcloud init
+        env:
+          CLOUDSDK_CORE_DISABLE_PROMPTS: 1
+      
       - name: Install Dependencies and Start Frontend
         run: |
           cd frontend/chrono-quest
@@ -62,5 +71,4 @@ jobs:
           gcloud config set compute/region asia-southeast1
 
           # Deploy the backend to GCP (you can use gcloud CLI commands here)
-          cd backend
           gcloud app deploy backend/build/app.yaml
