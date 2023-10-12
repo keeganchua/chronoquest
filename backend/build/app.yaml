@@ -1,0 +1,8 @@
+runtime: nodejs14  # Specify your Node.js runtime version
+
+env_variables:
+   # Define any environment variables your application needs
+
+handlers:
+  - url: /.*
+    script: auto
