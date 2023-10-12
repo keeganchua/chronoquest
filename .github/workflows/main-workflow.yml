@@ -64,14 +64,14 @@ jobs:
         run: |
           # Authenticate with GCP using the service account key
           echo ${{ secrets.GCP_SA_KEY }} > gcp-key.json
-          $(which gcloud) auth activate-service-account --key-file=gcp-key.json
+          /usr/lib/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file=gcp-key.json
 
           # Set the GCP project and region
-          $(which gcloud) config set project nth-drive-401803
-          $(which gcloud) config set compute/region asia-southeast1
+          /usr/lib/google-cloud-sdk/bin/gcloud config set project nth-drive-401803
+          /usr/lib/google-cloud-sdk/bin/gcloud config set compute/region asia-southeast1
 
           # Change to the "backend" directory
           cd backend
 
           # Deploy the backend to GCP (you can use gcloud CLI commands here)
-          $(which gcloud) app deploy backend/build/app.yaml
+          /usr/lib/google-cloud-sdk/bin/gcloud app deploy backend/build/app.yaml
