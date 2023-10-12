@@ -50,3 +50,16 @@ jobs:
         with:
           github_token: ${{ secrets.GH_PAGES_TOKEN }}
           publish_dir: ./frontend/chrono-quest/build
+
+      - name: Deploy Backend to Google Cloud Platform
+        run: |
+          # Authenticate with GCP using the service account key
+          echo ${{ secrets.GCP_SA_KEY }} > gcp-key.json
+          gcloud auth activate-service-account --key-file=gcp-key.json
+
+          # Set the GCP project and region
+          gcloud config set project nth-drive-401803
+          gcloud config set compute/region asia-southeast1
+
+          # Deploy the backend to GCP (you can use gcloud CLI commands here)
+          gcloud app deploy backend/build/app.yaml
