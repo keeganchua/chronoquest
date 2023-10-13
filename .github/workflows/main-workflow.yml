@@ -15,16 +15,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14
-
-      - name: Install Google Cloud SDK
-        run: |
-          # Install the Google Cloud SDK
-          curl -fsSL https://sdk.cloud.google.com | bash
-          exec -l $SHELL
-          gcloud init
-        env:
-          CLOUDSDK_CORE_DISABLE_PROMPTS: 1
-      
+          
       - name: Install Dependencies and Start Frontend
         run: |
           cd frontend/chrono-quest
@@ -60,18 +51,27 @@ jobs:
           github_token: ${{ secrets.GH_PAGES_TOKEN }}
           publish_dir: ./frontend/chrono-quest/build
 
-      - name: Deploy Backend to Google Cloud Platform
+      - name: Install Google Cloud SDK
         run: |
-          # Authenticate with GCP using the service account key
+          curl https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-390.0.0-linux-x86_64.tar.gz --output gcloud-sdk.tar.gz
+          tar -xf gcloud-sdk.tar.gz
+          ./google-cloud-sdk/install.sh
+          echo 'export PATH="$PATH:$HOME/google-cloud-sdk/bin"' >> $HOME/.bashrc
+          source $HOME/.bashrc
+        shell: bash
+        
+      - name: Authenticate with GCP
+        run: |
           echo ${{ secrets.GCP_SA_KEY }} > gcp-key.json
-          /usr/lib/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file=gcp-key.json
+          gcloud auth activate-service-account --key-file=gcp-key.json
+          gcloud config set project your-gcp-project-id
+          gcloud config set app/cloud_build_timeout 1600s  # Adjust as needed
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: gcp-key.json
 
-          # Set the GCP project and region
-          /usr/lib/google-cloud-sdk/bin/gcloud config set project nth-drive-401803
-          /usr/lib/google-cloud-sdk/bin/gcloud config set compute/region asia-southeast1
-
-          # Change to the "backend" directory
-          cd backend
-
-          # Deploy the backend to GCP (you can use gcloud CLI commands here)
-          /usr/lib/google-cloud-sdk/bin/gcloud app deploy backend/build/app.yaml
+      - name: Deploy to Google App Engine
+        run: |
+          cd backend  # Change to the backend directory
+          gcloud app deploy backend/build/app.yaml
+        env:
+          NODE_ENV: production
