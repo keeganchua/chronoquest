@@ -1,5 +1,5 @@
 const config = {
-    apiUrl: 'https://your-production-api-url.com', // Change this to your production API URL
+    apiUrl: 'https://34.126.160.90:3000', // Change this to your production API URL
 };
 
 module.exports = config;
