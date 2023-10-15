@@ -1,6 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const https = require('https'); // Import the 'https' module
+const https = require('https');
 const fs = require('fs');
 const app = require('./server'); // Assuming your server file is named 'server.js'
 
@@ -16,7 +16,7 @@ describe('Server API Tests', () => {
         chai
             .request(app)
             .get('/search?query=Tag')
-			.agent(httpsAgent) // Use the HTTPS agent
+            .agent(httpsAgent) // Use the HTTPS agent for self-signed certificate
             .end((err, res) => {
                 expect(res).to.have.status(200);
                 done();
@@ -27,7 +27,7 @@ describe('Server API Tests', () => {
         chai
             .request(app)
             .get('/search?query=Rolex')
-			.agent(httpsAgent) // Use the HTTPS agent
+            .agent(httpsAgent) // Use the HTTPS agent for self-signed certificate
             .end((err, res) => {
                 expect(res.body).to.be.an('array');
                 done();
@@ -38,7 +38,7 @@ describe('Server API Tests', () => {
         chai
             .request(app)
             .get('/search?query=Rolex')
-			.agent(httpsAgent) // Use the HTTPS agent
+            .agent(httpsAgent) // Use the HTTPS agent for self-signed certificate
             .end((err, res) => {
                 expect(res.body).to.deep.include({ id: 1, name: 'Rolex Submariner' });
                 // Add more expectations for other results if needed
@@ -50,7 +50,7 @@ describe('Server API Tests', () => {
         chai
             .request(app)
             .get('/invalid-route')
-			.agent(httpsAgent) // Use the HTTPS agent
+            .agent(httpsAgent) // Use the HTTPS agent for self-signed certificate
             .end((err, res) => {
                 expect(res).to.have.status(404);
                 done();
