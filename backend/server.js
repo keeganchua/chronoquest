@@ -3,7 +3,7 @@ const fs = require('fs');
 const express = require('express');
 const cors = require('cors'); // Import the cors middleware
 const app = express();
-const port = process.env.PORT || 443; // Use the default HTTPS port
+const port = process.env.PORT || 3000; 
 
 // Read the new private key
 const privateKey = fs.readFileSync('key.pem', 'utf8');
