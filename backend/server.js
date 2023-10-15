@@ -1,7 +1,22 @@
+const https = require('https');
+const fs = require('fs');
 const express = require('express');
 const cors = require('cors'); // Import the cors middleware
 const app = express();
 const port = process.env.PORT || 3000; // Use the provided port or default to 3000
+
+// Read the new private key
+const privateKey = fs.readFileSync('key.pem', 'utf8');
+
+// Read the SSL certificate
+const certificate = fs.readFileSync('cert.pem', 'utf8');
+
+const credentials = { key: privateKey, cert: certificate };
+
+// Your Express app configuration and routes go here
+
+// Create an HTTPS server
+const httpsServer = https.createServer(credentials, app);
 
 // Middleware to parse JSON requests
 app.use(express.json());
@@ -28,8 +43,9 @@ app.get('/search', (req, res) => {
     res.json(results);
 });
 
-const server = app.listen(port, () => {
-    console.log(`Server is running on port ${server.address().port}`);
+// Start the server
+httpsServer.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
-module.exports = server; // Export the server for testing
+module.exports = httpsServer; // Export the server for testing
