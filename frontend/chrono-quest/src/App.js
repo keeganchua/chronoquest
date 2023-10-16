@@ -7,20 +7,21 @@ function App() {
     const [searchResults, setSearchResults] = useState([]);
 
     const handleSearch = async () => {
-    try {
-        const response = await fetch(`/search?query=${searchQuery}`);
-        console.log(response);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        console.log('Data received from backend:', data);
-        setSearchResults(data); // Assuming the backend returns search results in JSON format
-    } catch (error) {
-        console.error('Error:', error);
-    }
-};
+        try {
+            const response = await fetch(`${config.apiUrl}/search?query=${searchQuery}`);
+            console.log(response);
 
+            if (!response.ok) {
+                throw new Error(`Network response was not ok (status ${response.status})`);
+            }
+
+            const data = await response.json();
+            console.log('Data received from backend:', data);
+            setSearchResults(data); // Assuming the backend returns search results in JSON format
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
 
     return (
         <div className="App">
